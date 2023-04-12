@@ -37,16 +37,25 @@
       ansible.builtin.debug:
         msg: "URL = {{URL}}, Hostname of Server = {{ansible_hostname}}"
 
-###### To Register a variable #######
+###### To Register a variable and declare a variable#######
 - name: Register a variable
   hosts: localhost
   tasks:
     - name: get uptime output
       ansible.builtin.shell: uptime
       register: out
+
     - name: printout
       ansible.builtin.debug:
         msg: "{{out}}"
+
     - name: Declare a Variable
       ansible.builtin.set_fact:
         status: "{{out.rc}}"
+
+    - name: print status
+      ansible.builtin.debug:
+        msg: "{{status}}"
+
+
+
