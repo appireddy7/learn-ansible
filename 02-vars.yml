@@ -28,7 +28,7 @@
       ansible.builtin.debug:
         msg: URL = {{URL}}
 
-      ##### Inventory level variables #######
+##### Inventory level variables #######
 
 - name: Inventory level variables
   hosts: all
@@ -36,3 +36,14 @@
     - name: print play variable from inventory
       ansible.builtin.debug:
         msg: "URL = {{URL}}, Hostname of Server = {{ansible_hostname}}"
+
+###### To Register a variable #######
+- name: Register a variable
+  hosts: localhost
+  tasks:
+    - name: get uptime output
+      ansible.builtin.shell: uptime
+      register: out
+    - name: printout
+      ansible.builtin.debug:
+        msg: "{{out}}"
