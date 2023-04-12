@@ -47,3 +47,6 @@
     - name: printout
       ansible.builtin.debug:
         msg: "{{out}}"
+    - name: Declare a Variable
+      ansible.builtin.set_fact:
+        status: "{{out.rc}}"
